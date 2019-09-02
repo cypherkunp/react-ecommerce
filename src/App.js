@@ -7,6 +7,7 @@ import JacketsPage from './pages/jackets-page/jackets-page.component';
 import SneakersPage from './pages/sneakers-page/sneakers-page.component';
 import MenPage from './pages/men-page/men-page.component';
 import WomenPage from './pages/women-page/women-page.component';
+import ShopPage from './pages/shop-page/shop-page.component';
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/shop/sneakers" component={SneakersPage} />
                 <Route path="/shop/men" component={MenPage} />
                 <Route path="/shop/women" component={WomenPage} />
+                <Route exact path="/shop" component={ShopPage} />
                 <Route exact path="/" component={HomePage} />
                 <Redirect to="/" />
             </Switch>
