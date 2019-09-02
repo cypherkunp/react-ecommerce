@@ -8,20 +8,26 @@ import SneakersPage from './pages/sneakers-page/sneakers-page.component';
 import MenPage from './pages/men-page/men-page.component';
 import WomenPage from './pages/women-page/women-page.component';
 import ShopPage from './pages/shop-page/shop-page.component';
+import Header from './components/header/header.component';
 
 function App() {
     return (
-        <div className="App">
-            <Switch>
-                <Route path="/shop/hats" component={HatsPage} />
-                <Route path="/shop/jackets" component={JacketsPage} />
-                <Route path="/shop/sneakers" component={SneakersPage} />
-                <Route path="/shop/men" component={MenPage} />
-                <Route path="/shop/women" component={WomenPage} />
-                <Route exact path="/shop" component={ShopPage} />
-                <Route exact path="/" component={HomePage} />
-                <Redirect to="/" />
-            </Switch>
+        <div className="app">
+            <div>
+                <Header />
+            </div>
+            <div className="app-content">
+                <Switch>
+                    <Route path="/shop/hats" component={HatsPage} />
+                    <Route path="/shop/jackets" component={JacketsPage} />
+                    <Route path="/shop/sneakers" component={SneakersPage} />
+                    <Route path="/shop/men" component={MenPage} />
+                    <Route path="/shop/women" component={WomenPage} />
+                    <Route exact path="/shop" component={ShopPage} />
+                    <Route exact path="/" component={HomePage} />
+                    <Redirect to="/" />
+                </Switch>
+            </div>
         </div>
     );
 }
