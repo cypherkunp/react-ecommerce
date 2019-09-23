@@ -27,7 +27,7 @@ class App extends Component {
             if (user) {
                 const userRef = await createUserProfileDocument(user);
                 await userRef.onSnapshot(async userSnapshot => {
-                    console.log('userSnapshot');
+                    console.log('userSnapshot', userSnapshot);
                     console.log(user);
 
                     this.setState({
