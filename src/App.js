@@ -27,7 +27,7 @@ class App extends Component {
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
             if (user) {
                 const userRef = await createUserProfileDocument(user);
-                userRef.onSnapshot(async userSnapshot => {
+                await userRef.onSnapshot(async userSnapshot => {
                     setCurrentUser({
                         currentUser: {
                             id: userSnapshot.id,
@@ -45,6 +45,8 @@ class App extends Component {
     }
 
     render() {
+        const { currentUser } = this.props;
+
         return (
             <div className="app">
                 <div>
@@ -59,8 +61,18 @@ class App extends Component {
                         <Route path="/shop/women" component={WomenPage} />
                         <Route exact path="/shop" component={ShopPage} />
                         <Route exact path="/contact" component={SignInSignUpPage} />
-                        <Route exact path="/signIn" component={SignInSignUpPage} />
-                        <Route exact path="/signOut" component={SignOut} />
+                        <Route
+                            exact
+                            path="/signIn"
+                            render={() =>
+                                currentUser ? <Redirect to="/" /> : <SignInSignUpPage />
+                            }
+                        />
+                        <Route
+                            exact
+                            path="/signOut"
+                            render={() => (currentUser ? <Redirect to="/" /> : <SignOut />)}
+                        />
                         <Route exact path="/" component={HomePage} />
                         <Redirect to="/" />
                     </Switch>
@@ -70,11 +82,15 @@ class App extends Component {
     }
 }
 
+const mapStateToProps = ({ user }) => ({
+    currentUser: user.currentUser
+});
+
 const mapDispatchToProps = dispatch => ({
     setCurrentUser: user => dispatch(setCurrentUser(user))
 });
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(App);
