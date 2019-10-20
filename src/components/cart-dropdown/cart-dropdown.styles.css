@@ -11,6 +11,10 @@
   right: 40px;
   z-index: 5;
 }
+.cart-dropdown .empty-cart {
+  font-size: 22px;
+  margin: 50px auto;
+}
 .cart-dropdown .cart-items {
   height: 240px;
   display: flex;

@@ -4,7 +4,7 @@ import './cart-icon.styles.scss';
 
 import { connect } from 'react-redux';
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
-import { selectCartItemsCount } from '../../redux/cart/cart.reselect';
+import { selectCartItemsCount } from '../../redux/cart/cart.selector';
 
 const CartIcon = ({ toggleCartHidden, itemCount }) => {
     console.log('count rendered');

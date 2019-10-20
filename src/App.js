@@ -3,6 +3,11 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './App.css';
+
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { setCurrentUser } from './redux/user/user.actions';
+import { selectCurrentUser } from './redux/user/user.selector';
+
 import HomePage from './pages/homepage/homepage.component';
 import HatsPage from './pages/hats-page/hats-page.component';
 import JacketsPage from './pages/jackets-page/jackets-page.component';
@@ -13,9 +18,7 @@ import ShopPage from './pages/shop-page/shop-page.component';
 import Header from './components/header/header.component';
 import SignInSignUpPage from './pages/sign-in-sign-up-page/sign-in-sign-up-page.component';
 import SignOut from './pages/sign-out/sign-out.component';
-
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-import { setCurrentUser } from './redux/user/user.actions';
+import CheckoutPage from './pages/checkout-page/checkout-page.component';
 
 class App extends Component {
     unsubscribeFromAuth = null;
@@ -61,6 +64,7 @@ class App extends Component {
                         <Route path="/shop/women" component={WomenPage} />
                         <Route exact path="/shop" component={ShopPage} />
                         <Route exact path="/contact" component={SignInSignUpPage} />
+                        <Route exact path="/checkout" component={CheckoutPage} />
                         <Route
                             exact
                             path="/signIn"
@@ -82,8 +86,8 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = ({ user }) => ({
-    currentUser: user.currentUser
+const mapStateToProps = state => ({
+    currentUser: selectCurrentUser(state)
 });
 
 const mapDispatchToProps = dispatch => ({
